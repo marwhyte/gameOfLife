@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Canvas from "./Canvas";
+import gridData from "../data/OurGrid";
 const WholePage = (props) => {
   const [generation, setGeneration] = useState(0);
-  const [ourGrid, setOurGrid] = useState(
-    Array(31)
-      .fill()
-      .map(() => Array(50).fill(false))
-  );
+  const [ourGrid, setOurGrid] = useState(gridData);
+  console.log(ourGrid);
   const changeStatus = () => {};
   return (
     <div className="wholePage">
