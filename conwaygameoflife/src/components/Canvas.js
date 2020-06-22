@@ -16,6 +16,7 @@ const Canvas = (props) => {
           ...prev,
           <Square
             key={ID}
+            id={ID}
             currentClass={isActive}
             changeStatus={props.changeStatus}
             row={ivar}

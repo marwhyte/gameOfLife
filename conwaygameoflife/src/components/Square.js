@@ -7,9 +7,11 @@ const Square = (props) => {
   return (
     <div
       className={props.currentClass}
-      id={props.key}
+      id={props.id}
       onClick={() => props.changeStatus(props.row, props.col)}
-    ></div>
+    >
+      <p style={{ fontSize: 6 }}>{props.id}</p>
+    </div>
   );
 };
 
