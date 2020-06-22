@@ -33,6 +33,18 @@ const WholePage = (props) => {
     }
     setOurGrid(temp);
   };
+  const getNextStep = () => {
+    const currentGrid = ourGrid;
+    var newGrid = [...ourGrid];
+
+    for (var i = 0; i < 31; i++) {
+      for (var j = 0; j < 50; j++) {}
+    }
+  };
+  const nextStart = () => {};
+  const startButton = () => {
+    setInterval(nextStart, 1000);
+  };
   return (
     <div className="wholePage">
       <Buttons randomize={randomize} clear={clear} />
