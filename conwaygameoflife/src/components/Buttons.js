@@ -4,8 +4,12 @@ const Buttons = (props) => {
   const [start, setStart] = useState(false);
   return (
     <div className="buttons">
-      <button className="button clear">Clear</button>
-      <button className="button randomize">Randomize</button>
+      <button className="button clear" onClick={() => props.clear()}>
+        Clear
+      </button>
+      <button className="button randomize" onClick={() => props.randomize()}>
+        Randomize
+      </button>
       {start ? (
         <button
           onClick={() => {
