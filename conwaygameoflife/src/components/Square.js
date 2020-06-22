@@ -1,7 +1,16 @@
 import React from "react";
 
 const Square = (props) => {
-  return <div className="square"></div>;
+  const changeStatusSquare = () => {
+    props.changeStatus(props.row, props.col);
+  };
+  return (
+    <div
+      className={props.currentClass}
+      id={props.key}
+      onClick={() => props.changeStatus(props.row, props.col)}
+    ></div>
+  );
 };
 
 export default Square;
