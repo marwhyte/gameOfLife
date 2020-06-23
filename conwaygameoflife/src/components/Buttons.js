@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Buttons = (props) => {
   const [start, setStart] = useState(false);
+  useEffect(() => {
+    if (props.clearPress === false) {
+      setStart(false);
+    }
+  }, [props.clearPress]);
   return (
     <div className="buttons">
       <button className="button clear" onClick={() => props.clear()}>
@@ -14,6 +19,7 @@ const Buttons = (props) => {
         <button
           onClick={() => {
             setStart(!start);
+            props.stop();
           }}
           className="button stop"
         >
@@ -23,6 +29,7 @@ const Buttons = (props) => {
         <button
           onClick={() => {
             setStart(!start);
+            props.start();
           }}
           className="button start"
         >
