@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import WholePage from "./components/WholePage";
+import WholeConway from "./components/WholeConway";
 
 function App() {
   return (
     <div className="App">
-      <WholePage />
+      <WholeConway />
     </div>
   );
 }

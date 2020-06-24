@@ -1,88 +1,188 @@
-.App {
-  text-align: center;
-  width: 100%;
-  height: 100vh;
-}
-
-.wholePage {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-}
-
-.canvas {
-  margin: auto;
-  padding-top: 10px;
-  background-color: transparent;
-  width: 960px;
+$bg: #fff;
+$text: #382b22;
+$light-green: lightgreen;
+$green: rgb(112, 235, 112);
+$dark-green: rgb(98, 243, 98);
+$green-border: rgb(59, 214, 59);
+$green-shadow: rgb(209, 255, 209);
+$light-pink: #ffcccb;
+$pink: #f7adab;
+$dark-pink: #e49493;
+$pink-border: #e66f6d;
+$pink-shadow: #ffe3e2;
+.everything {
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: ivory;
+  min-height: 100vh;
 }
-.texth2 {
-  color: white;
+.topInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
-.square {
-  cursor: pointer;
+.buttongreen {
+  margin: 0 10px;
+  position: relative;
   display: inline-block;
-  border: 1px solid white;
-  width: 17px;
-  height: 17px;
-  margin: 0;
-  &:hover {
-    border-color: darkorchid;
-    background-color: maroon;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  &.learn-more {
+    font-weight: 600;
+    color: $text;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    background: $light-green;
+    border: 2px solid $green-border;
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      background 150ms cubic-bezier(0, 0, 0.58, 1);
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $dark-green;
+      border-radius: inherit;
+      box-shadow: 0 0 0 2px $green-border, 0 0.625em 0 0 $green-shadow;
+      transform: translate3d(0, 0.75em, -1em);
+      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+        box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
+    &:hover {
+      background: $green;
+      transform: translate(0, 0.25em);
+      &::before {
+        box-shadow: 0 0 0 2px $green-border, 0 0.5em 0 0 $green-shadow;
+        transform: translate3d(0, 0.5em, -1em);
+      }
+    }
+    &:active {
+      background: $green;
+      transform: translate(0em, 0.75em);
+      &::before {
+        box-shadow: 0 0 0 2px $green-border, 0 0 $green-shadow;
+        transform: translate3d(0, 0, -1em);
+      }
+    }
   }
 }
-
-.notInUse {
-  background-color: rgb(165, 250, 207);
-}
-.inUse {
-  background-color: navy;
-}
-
-.buttons {
-  height: 130px;
-  width: 500px;
-  margin: auto;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.button {
-  background-color: white;
-  padding: 12px 15px;
-  border: none;
-  border-radius: 5px;
-  border: 1px solid white;
-  color: white;
+.buttonred {
+  margin: 0 10px;
+  position: relative;
+  display: inline-block;
   cursor: pointer;
-  width: 140px;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  &.learn-more {
+    font-weight: 600;
+    color: $text;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    background: $light-pink;
+    border: 2px solid $pink-border;
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      background 150ms cubic-bezier(0, 0, 0.58, 1);
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $dark-pink;
+      border-radius: inherit;
+      box-shadow: 0 0 0 2px $pink-border, 0 0.625em 0 0 $pink-shadow;
+      transform: translate3d(0, 0.75em, -1em);
+      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+        box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
+    &:hover {
+      background: $pink;
+      transform: translate(0, 0.25em);
+      &::before {
+        box-shadow: 0 0 0 2px $pink-border, 0 0.5em 0 0 $pink-shadow;
+        transform: translate3d(0, 0.5em, -1em);
+      }
+    }
+    &:active {
+      background: $pink;
+      transform: translate(0em, 0.75em);
+      &::before {
+        box-shadow: 0 0 0 2px $pink-border, 0 0 $pink-shadow;
+        transform: translate3d(0, 0, -1em);
+      }
+    }
+  }
+}
+h1 {
+  width: 100%;
+  text-align: center;
+}
+.editInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.changeTime {
+  margin-left: 15px;
+  padding: 10px 5px;
+  width: 80px;
+  border: 1px solid rgb(187, 185, 185);
+  border-radius: 7px;
   outline: none;
 }
-.clear {
-  background-color: #ff6519;
-  &:hover {
-    background-color: #d4500e;
-  }
+
+.wrapAllBoxes {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-top: 10px;
 }
-.randomize {
-  background-color: #3366ff;
-  &:hover {
-    background-color: #244cc5;
-  }
+
+.btnGroup {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 40px auto;
 }
-.start {
-  background-color: #5cb922;
-  &:hover {
-    background-color: #48921a;
-  }
+
+.deadBox {
+  display: flex;
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: rgb(255, 225, 229);
 }
-.stop {
-  background-color: red;
-  &:hover {
-    background-color: rgb(199, 0, 0);
-  }
+
+.aliveBox {
+  display: flex;
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: navy;
+}
+p {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 50px;
 }
