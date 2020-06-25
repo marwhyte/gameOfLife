@@ -1,16 +1,43 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import TheMagic from "../gridCreator/TheMagic";
 import Box from "./Box";
 
-const WholeConway = () => {
+const WholeConway = (props) => {
   const [universe, setUniverse] = useState(new TheMagic());
   const [size, setSize] = useState([70, 20]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [timer, setTimer] = useState(100);
+  const inputRef = useRef(null);
+  const [switcher, setSwitcher] = useState(false);
+
   let myInterval = useRef(null);
   const editTime = (e) => {
     if (!isGenerating) {
       setTimer(e.target.value);
+    }
+  };
+  const editHeight = (e) => {
+    if (!isGenerating) {
+      var actualSize = [...size];
+
+      if (e.target.value < 20) actualSize[1] = e.target.value;
+      else actualSize[1] = 20;
+
+      setSize(actualSize);
+
+      setBoard();
+    }
+  };
+  const editWidth = (e) => {
+    if (!isGenerating) {
+      var actualSize = [...size];
+
+      if (e.target.value < 70) actualSize[0] = e.target.value;
+      else actualSize[0] = 70;
+
+      setSize(actualSize);
+
+      setBoard();
     }
   };
   const start = () => {
@@ -32,9 +59,26 @@ const WholeConway = () => {
       setUniverse(universe.boxMaker(place));
     }
   };
+  const randomize = () => {
+    if (!isGenerating) {
+      for (var i = 0; i < size[0]; i++) {
+        for (var j = 0; j < size[1]; j++) {
+          const randomTrue = Math.random() > 0.7 ? true : false;
+          if (randomTrue) {
+            universe.createBox({ x: i, y: j });
+          } else {
+            universe.deleteBox(i + " , " + j);
+          }
+        }
+      }
+      setBoard();
+      setSwitcher((switcher) => !switcher);
+    }
+  };
   const setBoard = () => {
     var currentBoard = [];
     var theRow = [];
+
     for (var i = 0; i < size[0]; i++) {
       for (var j = 0; j < size[1]; j++) {
         if (universe.checkIfAlive(i + " , " + j)) {
@@ -64,7 +108,19 @@ const WholeConway = () => {
       );
       theRow = [];
     }
+
     return currentBoard;
+  };
+  const clearBoard = () => {
+    if (!isGenerating) {
+      for (var i = 0; i < size[0]; i++) {
+        for (var j = 0; j < size[1]; j++) {
+          universe.deleteBox(i + " , " + j);
+        }
+      }
+      universe.currentIteration = 0;
+      setSwitcher((value) => !value);
+    }
   };
 
   return (
@@ -82,6 +138,33 @@ const WholeConway = () => {
               onChange={editTime}
             />
           </label>
+          {/* <label>
+            width is
+            <input
+              className="changeTime"
+              type="text"
+              value={size[0]}
+              onChange={editWidth}
+            />
+          </label> */}
+          <label>
+            height is
+            <input
+              className="changeTime"
+              type="text"
+              value={size[1]}
+              onChange={editHeight}
+            />
+          </label>
+          <label>
+            width is
+            <input
+              className="changeTime"
+              type="text"
+              value={size[0]}
+              onChange={editWidth}
+            />
+          </label>
         </div>
         <div className="btnGroup">
           <button className="learn-more buttongreen" onClick={start}>
@@ -90,9 +173,17 @@ const WholeConway = () => {
           <button className="learn-more buttonred" onClick={stop}>
             stop Simulation
           </button>
+          <button className="learn-more buttonyellow" onClick={clearBoard}>
+            Clear
+          </button>
+          <button className="learn-more buttonpurple" onClick={randomize}>
+            Randomize
+          </button>
         </div>
       </div>
-      <div className="wrapAllBoxes">{setBoard()}</div>
+      <div className="wrapAllBoxes" ref={inputRef} onChange={switcher}>
+        {setBoard()}
+      </div>
       <p>Generations: {universe.currentGen()}</p>
     </div>
   );
