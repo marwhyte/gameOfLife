@@ -9,7 +9,7 @@ const WholeConway = (props) => {
   const [timer, setTimer] = useState(100);
   const inputRef = useRef(null);
   const [switcher, setSwitcher] = useState(false);
-
+  console.log(universe.boxesAlive);
   let myInterval = useRef(null);
   const editTime = (e) => {
     if (!isGenerating) {
@@ -113,11 +113,9 @@ const WholeConway = (props) => {
   };
   const clearBoard = () => {
     if (!isGenerating) {
-      for (var i = 0; i < size[0]; i++) {
-        for (var j = 0; j < size[1]; j++) {
-          universe.deleteBox(i + " , " + j);
-        }
-      }
+      universe.boxesAlive.forEach((value, key) => {
+        universe.deleteBox(key);
+      });
       universe.currentIteration = 0;
       setSwitcher((value) => !value);
     }
@@ -181,7 +179,7 @@ const WholeConway = (props) => {
           </button>
         </div>
       </div>
-      <div className="wrapAllBoxes" ref={inputRef} onChange={switcher}>
+      <div className="wrapAllBoxes" ref={inputRef} onChange={() => switcher}>
         {setBoard()}
       </div>
       <p>Generations: {universe.currentGen()}</p>

@@ -35,9 +35,7 @@ export default class TheMagic {
 
     return new TheMagic(this.generation, this.boxesAlive);
   }
-  clearBoard() {
-    console.log(this.boxesAlive);
-  }
+
   nextGen() {
     this.boxesAlive.forEach((item) => {
       this.NeighborsLiveCount(item);
