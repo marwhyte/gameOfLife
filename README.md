@@ -1,5 +1,6 @@
 # [Game Of Life](https://hungry-varahamihira-3e8934.netlify.app/)
-
+![GitHub repo size](https://img.shields.io/github/repo-size/marwhyte/gameOfLife)
+![GitHub contributors](https://img.shields.io/github/contributors/marwhyte/gameOfLife)
 My version of Conway's "Game of Life", where cells live or die based off of their neighbors.
 
 
