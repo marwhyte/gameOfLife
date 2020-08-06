@@ -4,7 +4,10 @@
 
 My version of Conway's "Game of Life", where cells live or die based off of their neighbors.
 
-
+## Tech Stack
+- React
+- Javascript
+- SASS
 
 ## Contributing to Game Of Life
 
